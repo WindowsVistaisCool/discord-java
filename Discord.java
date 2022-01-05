@@ -6,23 +6,22 @@ public class Discord {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        print("Welcome to \"Discord\"!");
-        print("Let's create a new account for you...");
+        print("Welcome to \"Discord\"!\nLet's create a new account for you...");
         print("What is your name? ");
 
         String name = sc.next();
 
-        User account = new User(name, false); // Creates a new user, not a bot
+        User account = new User(name, false); // Creates a new user, not a bot (not sure how to create default parameters :/)
         NPC fritz = new NPC("Fritz"); // Generate an NPC for fritz
 
         print("You are now logged in as " + account.getUser());
 
         while (true) {
-            print("What would you like to do (? for help)? ");
+            print("What would you like to do (? for help)?");
             String action = sc.next();
 
             if (action.equals("?")) {
-                print("You can do one of these options:\n- (nitro) to enable or disable nitro\n- (chat) to chat with Fritz\n-(guild) join a guild and start chatting\n- (exit) to exit discord");
+                print("You can do one of these options:\n- (nitro) to enable or disable nitro\n- (chat) to chat with Fritz\n- (exit) to exit discord");
             } else if (action.equals("nitro")) {
                 if (account.hasNitro()) {
                     account.DisableNitro();
@@ -53,10 +52,12 @@ public class Discord {
                 }
             } else if (action.equals("exit")) {
                 print("Thank you for using \"Discord\"!\nUnfortunately, your account has been flagged for scamming, so we have terminated your account.");
-                System.exit(0);
+                break;
             } else {
-                print("Invalid option!");
+                print("Invalid option (? for help)!");
             }
         }
+        sc.close();
+        System.exit(0);
     }
 }
